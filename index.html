@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wor(l)ds — write your world</title>
 <style>
-:root{--coral:#FF5A3C}*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;color:#eee;font-family:ui-monospace,monospace}
+:root{--coral:#FF5A3C}*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;color:#eee;font-family:ui-monospace,monospace;overflow-x:hidden}
 .app{display:flex;height:100vh;gap:10px;padding:10px}
 .col-input{flex:0 0 320px;display:flex;flex-direction:column;min-width:0}
 .brand{font-family:system-ui,sans-serif;font-weight:800;font-size:1.5rem;margin:2px 0 0}.brand .l{color:var(--coral)}
@@ -18,7 +18,24 @@ textarea{flex:1;width:100%;background:#fff;color:#111;border:0;border-radius:10p
 .credit{width:160px;text-align:center;color:#555;font-size:9px}.credit a{color:#777}
 .adslot>div{transform:scale(.8);transform-origin:top left}}
 
-@media(max-width:1000px){.app{flex-direction:column;height:auto}.col-input,.col-world,.col-ad{flex:none;width:100%}.col-ad{flex-direction:row;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:14px;order:3}.adslot,.selfad{width:auto}.credit{width:100%}#stage{height:58vh}textarea{height:110px;flex:none}}</style></head><body><div class="app">
+@media(max-width:1000px){
+  .app{flex-direction:column;height:auto;min-height:100vh;padding:8px;gap:8px}
+  .col-input,.col-world,.col-ad{flex:0 0 auto !important;width:100% !important;min-width:0 !important}
+  .brand{font-size:1.3rem}
+  textarea{height:90px;flex:none;font-size:16px}
+  .col-world{order:2}
+  #stage{height:52vh;min-height:300px}
+  .worldbar{gap:6px;font-size:.7rem}
+  .worldbar button{padding:7px 10px}
+  .worldbar label{font-size:.7rem}
+  .col-ad{order:3;flex-direction:row;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:14px;margin-top:8px}
+  .adslot,.selfad{width:auto;max-width:100%}.adslot>div{max-width:100%}.credit{width:100%}
+}
+@media(max-width:480px){
+  #stage{height:46vh;min-height:260px}
+  .worldbar{justify-content:center}
+  .worldbar label:first-of-type{width:100%;justify-content:center}
+}</style></head><body><div class="app">
 <div class="col-input"><div class="brand">wor<span class="l">(l)</span>ds</div><div class="tag">write your world.</div>
 <div class="inbtns"><button id="buildbtn" onclick="build()">Build world</button><button class="clear" onclick="clearAll()">Clear</button></div>
 <div class="gauge"><i id="gaugefill"></i></div>
