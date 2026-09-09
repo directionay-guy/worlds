@@ -72,7 +72,7 @@ function build(){var raw=document.getElementById('txt').value;letters=(raw.toUpp
   var tw=Math.round(TW*ts),th=Math.round(TH*ts),sx=STEP_X*ts,sy=STEP_Y*ts,cw=Math.round(fW*ts),ch=Math.round(fH*ts);
   var cv=document.createElement('canvas');cv.width=cw;cv.height=ch;var ctx=cv.getContext('2d');var ox=totRows*sx,oy=120*ts,items=[];
   for(var R=0;R<totRows;R++)for(var C=0;C<totCols;C++){if(!active[R][C])continue;var x=ox+(C-R)*sx,y=oy+(C+R)*sy,depth=R+C;items.push([depth,0,x,y,ground(R,C)]);var st=stack(R,C);for(var k=0;k<st.length;k++)items.push([depth,1+k,x,y+off(st[k][0])*ts+st[k][1]*ts,st[k][0]]);}
-  items.sort(function(a,b){return a[0]-b[0]||a[1]-b[1];});var fb=IMG['grass_center_N'];items.forEach(function(it){var im=IMG[it[4]]||fb;if(im)ctx.drawImage(im,it[2],it[3],tw,th);});
+  items.sort(function(a,b){return a[0]-b[0]||a[1]-b[1];});var fb=IMG['grass_center_N'];items.forEach(function(it){var im=IMG[it[4]]||fb;if(im&&im.complete&&im.naturalWidth>0){try{ctx.drawImage(im,it[2],it[3],tw,th);}catch(e){}}});
   worldCanvas=crop(cv);redisplay(true);updateGauge();}
 function redisplay(reset){if(!worldCanvas)return;var st=document.getElementById('stage'),rc=st.getBoundingClientRect(),sw=Math.max(50,rc.width-16),sh=Math.max(50,rc.height-16);var fit=Math.min(1,sw/worldCanvas.width,sh/worldCanvas.height)*0.96,sl=document.getElementById('zoom');if(reset)sl.value=100;var z=(+sl.value)/100,scale=fit*z;st.innerHTML='';worldCanvas.style.width=Math.round(worldCanvas.width*scale)+'px';worldCanvas.style.height=Math.round(worldCanvas.height*scale)+'px';st.appendChild(worldCanvas);var ph=document.getElementById('panhint');if(ph)ph.style.display=(+document.getElementById('zoom').value>110)?'block':'none';}
 function crop(c){var x=c.getContext('2d'),w=c.width,h=c.height,d=x.getImageData(0,0,w,h).data,mnX=w,mnY=h,mxX=0,mxY=0,f=false;for(var y=0;y<h;y++)for(var xx=0;xx<w;xx++){if(d[(y*w+xx)*4+3]>8){f=true;if(xx<mnX)mnX=xx;if(xx>mxX)mxX=xx;if(y<mnY)mnY=y;if(y>mxY)mxY=y;}}if(!f)return c;var cw=mxX-mnX+1,ch=mxY-mnY+1,o=document.createElement('canvas');o.width=cw;o.height=ch;o.getContext('2d').drawImage(c,mnX,mnY,cw,ch,0,0,cw,ch);return o;}
@@ -95,5 +95,5 @@ function dlText(){var t=document.getElementById('txt').value,b=new Blob([t],{typ
  st.addEventListener('touchend',function(){pd=0;});
 })();
 
-window.addEventListener('resize',function(){redisplay();});
+window.addEventListener('resize',function(){redisplay();});window.addEventListener('orientationchange',function(){setTimeout(redisplay,300);});
 autoChanged();preload(function(){build();});
