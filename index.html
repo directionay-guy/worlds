@@ -38,7 +38,7 @@ textarea{flex:1;width:100%;background:#fff;color:#111;border:0;border-radius:10p
 <div class="col-input"><div class="brand">wor<span class="l">(l)</span>ds</div><div class="tag">write your world.</div>
 <div class="inbtns"><button id="buildbtn" onclick="build()">Build world</button><button class="clear" onclick="clearAll()">Clear</button></div>
 <div class="gauge"><i id="gaugefill"></i></div>
-<textarea id="txt" placeholder="Type anything and watch your words become a world…" oninput="onType()">type anything and watch your words become a world</textarea>
+<textarea id="txt" placeholder="Type anything and watch your words become a world…" oninput="onType()"></textarea>
 <div style="display:flex;justify-content:space-between;color:#666;font-size:.72rem;margin-top:6px"><span id="cletters"></span><span id="cgrids"></span></div></div>
 <div class="col-world"><div class="worldbar"><button onclick="dlSocial()">Download</button><button onclick="dlHD()">Download HD</button><button onclick="dlText()">Save text</button><label>zoom<input type="range" id="zoom" min="30" max="300" value="100" oninput="redisplay()" style="width:140px"></label><label><input type="checkbox" id="auto" checked onchange="autoChanged()"> auto-build</label><label style="margin-left:auto">try a sample <select id="sample" onchange="loadSample()" style="font-family:inherit;background:#222;color:#ccc;border:0;border-radius:6px;padding:5px"><option value="" selected disabled>choose a sample…</option><option value="Castle & moat">Castle & moat</option><option value="Busy city">Busy city</option><option value="Farmland">Farmland</option><option value="Forest">Forest</option><option value="River valley">River valley</option><option value="Toyland (1903)">Toyland (1903)</option><option value="Shakespeare Sonnet 18">Shakespeare Sonnet 18</option></select></label></div>
 <div id="stage"><div class="hint">your world appears here</div></div><div id="panhint" style="display:none;color:#666;font-size:.7rem;text-align:center;margin-top:4px">drag to pan · scroll or pinch to zoom</div></div>
@@ -67,5 +67,6 @@ textarea{flex:1;width:100%;background:#fff;color:#111;border:0;border-radius:10p
 </div>
 </div>
 <div class="selfad"><h4>More from Joel Pickard</h4><p>Solo word-game maker:</p><a href="https://directionary.net" target="_blank">→ Directionary</a><a href="https://directionary.net/proTAB" target="_blank">→ Directionary PRO</a><a href="https://unimpossiblegame.com" target="_blank">→ Unimpossible</a></div>
-<div class="credit">Map tiles by <a href="https://kenney.nl" target="_blank">Kenney</a> (CC0)</div></div></div>
+<div class="credit">Map tiles by <a href="https://kenney.nl" target="_blank">Kenney</a> (CC0)</div>
+<div class="copyright" style="width:160px;text-align:center;color:#555;font-size:9px;line-height:1.5;margin-top:6px">Wor(l)ds™ — Which Way To Words?™<br>© 2025 Joel Pickard.<br>All rights reserved.</div></div></div>
 <script src="game/worlds.js"></script></body></html>
